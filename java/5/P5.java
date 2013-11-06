@@ -5,6 +5,8 @@ class P5 {
   /**
    * Factorize n and check with factor array.
    *
+   * Complexity: O(logN)
+   *
    * @param factor accumulated factors which index is factor-1 and value is power of the factor.
    * @param n the number to be factorized.
    * @param limit the upper bound of factor number.
@@ -17,7 +19,7 @@ class P5 {
     while (f <= factor.length && n > 1 && f <= limit) {
       if (n % f == 0) {
         m++;
-        if (m > factor[f-1]) {
+        if (m > factor[f-1]) { // this number n need additional factor f.
           factor[f-1] = m;
           ans *= f;
         }
@@ -35,9 +37,11 @@ class P5 {
     long ans = 2520;
     int limit = 10;
 
+    // Memory: O(N)
     int[] factor = new int[n];
     ans = factorize(factor, (int) ans, limit);
 
+    // Complexity: O(NlogN)
     for (int i = limit+1; i<= n; i++) {
       ans = ans * factorize(factor, i, i);
     }

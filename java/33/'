@@ -1,0 +1,48 @@
+
+
+
+
+import java.lang.Math;
+import java.util.*;
+
+class P32 {
+
+  public static interface Ops {
+    void invoke(int[] tokens);
+  }
+
+  /**
+   * Permutate tokens to all possible ways and invoke input operation
+   *
+   * Complexity: O(N!) where N is the number of tokens
+   */
+  public static void permute(int[] token, int start, Ops ops) {
+    if (token.length-1 <= start) {
+      ops.invoke(token);
+      return;
+    }
+
+    permute(token, start+1, ops);
+    for (int i=start+1;i<token.length;i++) {
+      int tmp = token[start];
+      token[start] = token[i];
+      token[i] = tmp;
+      permute(token, start+1, ops);
+      token[i] = token[start];
+      token[start] = tmp;
+    }
+  }
+
+  public static void main(String[] args) {
+
+    for (int a = 10;a<100;a++) {
+      for (int b = a+1;b<100;b++) {
+        if (a/10 == b/10) {
+          double b = (a%10) * 1.00 / (b%10);
+        }
+      }
+    }
+    System.out.println(sum);
+  }
+
+}
